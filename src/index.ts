@@ -1,31 +1,38 @@
 import express from "express";
-import type { Request, Response } from "express";
+import type { Request, Response, Express } from "express";
 import { config } from "dotenv";
-import { middleware } from "./middleware";
-import { connectDB } from "./database/connectDB";
+import { connectDB } from "./database";
+import { createApolloServer } from "./graphql";
 
 config();
 
-console.log("Config loaded: ", process.env.MONGO_URI);
-const dev = process.env.NODE_ENV !== "production";
+const { NODE_ENV, PORT, MONGO_URI } = process.env;
 
-connectDB({ uri: process.env.MONGO_URI ?? "", devMode: dev });
+const dev = NODE_ENV !== "production";
+const port = PORT || 5001;
 
-const PORT = process.env.PORT || 5001;
+const prepareServer = async (): Promise<Express> => {
+    const app = express();
 
-const app = express();
+    app.get("/", (_, res) => {
+        res.sendStatus(200);
+    });
 
-const unusedConst = "";
+    await connectDB({ uri: MONGO_URI ?? "", devMode: dev });
 
-app.use(middleware);
+    const apolloServer = await createApolloServer(dev);
 
-app.get("/", (_: Request, res: Response) => {
-    console.log("Hello world!");
-    res.json({
-        status: "ok",
-    }).status(200);
-});
+    await apolloServer.start();
 
-app.listen(PORT, () => {
-    console.log(`[server]: Started on port ${PORT}`);
-});
+    apolloServer.applyMiddleware({ app });
+
+    return app;
+};
+
+prepareServer()
+    .then((server) =>
+        server.listen(port, () => {
+            console.log(`[server] Running on port: ${port}`);
+        })
+    )
+    .catch((err: unknown) => console.log(`Some unholy error occured: ${err}.`));
