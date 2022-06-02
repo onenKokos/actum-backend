@@ -1,0 +1,29 @@
+{
+  "name": "actum-backend",
+  "version": "1.0.0",
+  "description": "Backend part of actum task",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onenKokos/actum-backend.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Node",
+    "Typescript",
+    "GraphQL",
+    "Apollo",
+    "Apollo",
+    "Server",
+    "JavaScript"
+  ],
+  "author": "Lukas Riha <lukas.riha94@seznam.cz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onenKokos/actum-backend/issues"
+  },
+  "homepage": "https://github.com/onenKokos/actum-backend#readme"
+}
