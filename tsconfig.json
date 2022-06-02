@@ -3,13 +3,14 @@
     "target": "esnext",
     "module": "commonjs",
     "outDir": "./dist",
-    "baseUrl": ".",
     "strict": true,
     "moduleResolution": "node",
     "lib": ["esnext"],
-    "inlineSourceMap": true,
     "esModuleInterop": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
-  }
+    "noUnusedParameters": true,
+    "noImplicitAny": true
+  },
+  "include": ["src"],
+  "exclude": ["dist"]
 }
