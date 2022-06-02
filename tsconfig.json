@@ -1,16 +1,17 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "moduleResolution": "node",
-    "lib": ["esnext"],
-    "esModuleInterop": true,
-    "strictNullChecks": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true
-  },
-  "include": ["src"],
-  "exclude": ["dist"]
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "strict": true,
+        "moduleResolution": "node",
+        "lib": ["es2016", "dom"],
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "strictNullChecks": true,
+        "noUnusedParameters": true,
+        "noImplicitAny": true
+    },
+    "include": ["src"],
+    "exclude": ["dist, node_modules"]
 }
