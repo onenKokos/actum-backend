@@ -24,8 +24,8 @@ This repo concerns itself with task number 8:
   - Set up github actions (for pullrequest to master, run tests or something)
 - Code quality tools
   - ~~husky~~
-  - lint-stage
-  - commitizen
+  - ~~lint-staged~~
+  - commitizen or commintlint
 - Maybe some tests...
 
 ## Local development
