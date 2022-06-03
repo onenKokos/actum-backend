@@ -1,6 +1,7 @@
 {
   "*.{js,ts}": [
-    "eslint --fix",
-    "prettier --write"
+    "format",
+    "typecheck",
+    "lint"
   ]
 }
