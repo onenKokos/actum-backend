@@ -66,6 +66,6 @@
         "mongoose": "^6.3.5"
     },
     "engines": {
-        "node": ">16.x"
+        "node": "16.x"
     }
 }
