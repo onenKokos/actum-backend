@@ -10,7 +10,7 @@ This repo concerns itself with task number 8:
 
 ## Prerequisites
 
-- Node (developed on version 16.x due to vercel)
+- Node (developed on version 16.x)
 - Package manager (npm or yarn)
 - git
 - Docker (optional)
