@@ -23,7 +23,7 @@ This repo concerns itself with task number 8:
   - Lock master (main) branch
   - Set up github actions (for pullrequest to master, run tests or something)
 - Code quality tools
-  - husky
+  - ~~husky~~
   - lint-stage
   - commitizen
 - Maybe some tests...
