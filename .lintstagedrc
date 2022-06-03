@@ -1,7 +1,7 @@
 {
   "*.{js,ts}": [
     "prettier --write \"src/**/*.+(js|ts|json)\"",
-    "tsc --noEmit --skipLibCheck ",
+    "tsc --noEmit --skipLibCheck --esModuleInterop",
     "eslint . --ext .ts"
   ]
 }

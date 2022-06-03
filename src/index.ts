@@ -6,6 +6,8 @@ import { createApolloServer } from "./graphql";
 
 config();
 
+console.log("THIS CUNT RUNNNINGAKKF:LASD????");
+
 const { NODE_ENV, PORT, MONGO_URI } = process.env;
 
 const dev = NODE_ENV !== "production";
