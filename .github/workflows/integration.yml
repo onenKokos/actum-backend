@@ -19,6 +19,10 @@ jobs:
           node-version: 18.x.x
           cache: npm
 
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install # will run `yarn install` command
+
       - name: Install dependencies?
         run: npm install
 
