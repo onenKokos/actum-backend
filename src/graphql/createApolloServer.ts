@@ -6,7 +6,7 @@ import { join } from "path";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import {
     ApolloServerPluginLandingPageGraphQLPlayground,
-    ApolloServerPluginLandingPageDisabled,
+    // ApolloServerPluginLandingPageDisabled,
 } from "apollo-server-core";
 
 // import { ProductServiceQueries } from "../services";
@@ -37,11 +37,13 @@ export const createApolloServer = async (
         ...config,
         introspection: dev,
         typeDefs: Schema,
-        plugins: [
-            dev
-                ? ApolloServerPluginLandingPageGraphQLPlayground()
-                : ApolloServerPluginLandingPageDisabled(),
-        ],
+        // I want to have playground enable in production aswell for now
+        // plugins: [
+        //     dev
+        //         ? ApolloServerPluginLandingPageGraphQLPlayground()
+        //         : ApolloServerPluginLandingPageDisabled(),
+        // ],
+        plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
         resolvers: Resolvers,
         // context: () => {} wont need probably
     });
