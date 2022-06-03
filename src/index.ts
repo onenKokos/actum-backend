@@ -1,5 +1,5 @@
 import express from "express";
-import type { Request, Response, Express } from "express";
+import type { Express } from "express";
 import { config } from "dotenv";
 import { connectDB } from "./database";
 import { createApolloServer } from "./graphql";
