@@ -1,3 +1,80 @@
 type Query {
-    hello: String!
+    getExamples: [Example]!
 }
+
+type Mutation {
+    createExample(input: CreateExampleInput!): Example!
+}
+
+type Example {
+    name: String!
+}
+
+input CreateExampleInput {
+    name: String!
+}
+
+# type Query {
+#     hello: String!
+#     getAllProducts: [Product]!
+# }
+
+# type Mutation {
+#     createProduct(input: CreateProductInput!): Product!
+#     deleteAllInvoices: Boolean!
+# }
+
+# enum Category {
+#     glass
+#     steel
+#     plastic
+# }
+
+# enum Currency {
+#     USD
+#     EUR
+# }
+
+# type Image {
+#     src: String!
+#     alt: String!
+# }
+
+# type Details {
+#     weight: Int
+#     thickness: Int
+#     descriptions: String
+#     recommendations: [Image]
+# }
+
+# type Product {
+#     name: String!
+#     category: Category!
+#     price: Int!
+#     currency: Currency!
+#     image: Image!
+#     featured: Boolean!
+#     details: Details
+# }
+
+# input ImageInput {
+#     alt: String
+#     src: String
+# }
+
+# input DetailsInput {
+#     weight: Int
+#     thickness: Int
+#     descriptions: String
+#     recommendations: [ImageInput]
+# }
+
+# input CreateProductInput {
+#     name: String!
+#     category: String!
+#     price: Int!
+#     currency: Currency!
+#     image: ImageInput!
+#     featured: Boolean!
+#     details: DetailsInput
+# }

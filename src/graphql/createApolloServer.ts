@@ -3,20 +3,31 @@ import type { Config } from "apollo-server-express";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { join } from "path";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import {
     ApolloServerPluginLandingPageGraphQLPlayground,
     ApolloServerPluginLandingPageDisabled,
 } from "apollo-server-core";
 
+// import { ProductServiceQueries } from "../services";
+import { ExampleServiceQueries, ExmapleServiceMutations } from "../services";
 const schema = loadSchemaSync(join(__dirname, "../../schema/root.graphql"), {
     loaders: [new GraphQLFileLoader()],
 });
 
 const Resolvers = {
     Query: {
-        hello: () => "Hello",
+        // getAllProducts: ProductServiceQueries.getAllProducts,
+        getExamples: ExampleServiceQueries.getExamples,
+    },
+    Mutation: {
+        createExample: ExmapleServiceMutations.createExample,
     },
 };
+
+const Schema = makeExecutableSchema({
+    typeDefs: schema,
+});
 
 export const createApolloServer = async (
     dev: boolean,
@@ -25,7 +36,7 @@ export const createApolloServer = async (
     return new ApolloServer({
         ...config,
         introspection: dev,
-        typeDefs: schema,
+        typeDefs: Schema,
         plugins: [
             dev
                 ? ApolloServerPluginLandingPageGraphQLPlayground()
