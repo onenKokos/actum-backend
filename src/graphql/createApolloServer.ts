@@ -1,10 +1,16 @@
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import type { Config } from "apollo-server-express";
-import { importSchema } from "graphql-import";
+import { loadSchemaSync } from "@graphql-tools/load";
+import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
+import { join } from "path";
 import {
     ApolloServerPluginLandingPageGraphQLPlayground,
     ApolloServerPluginLandingPageDisabled,
 } from "apollo-server-core";
+
+const schema = loadSchemaSync(join(__dirname, "../../schema/root.graphql"), {
+    loaders: [new GraphQLFileLoader()],
+});
 
 const Resolvers = {
     Query: {
@@ -19,9 +25,7 @@ export const createApolloServer = async (
     return new ApolloServer({
         ...config,
         introspection: dev,
-        typeDefs: gql`
-            ${importSchema("schema/root.graphql")}
-        `,
+        typeDefs: schema,
         plugins: [
             dev
                 ? ApolloServerPluginLandingPageGraphQLPlayground()

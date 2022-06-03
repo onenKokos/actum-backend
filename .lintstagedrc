@@ -1,7 +1,7 @@
 {
   "*.{js,ts}": [
-    "format",
-    "typecheck",
-    "lint"
+    "prettier --write \"src/**/*.+(js|ts|json)\"",
+    "tsc --noEmit --skipLibCheck ",
+    "eslint . --ext .ts"
   ]
 }
