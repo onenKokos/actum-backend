@@ -1,5 +1,5 @@
-import { GraphQLResolveInfo } from 'graphql';
-import gql from 'graphql-tag';
+import { GraphQLResolveInfo } from "graphql";
+import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -15,13 +15,13 @@ export type Scalars = {
 };
 
 export type AdditionalEntityFields = {
-  path?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars["String"]>;
+  type?: InputMaybe<Scalars["String"]>;
 };
 
 export type Query = {
-  __typename?: 'Query';
-  hello: Scalars['String'];
+  __typename?: "Query";
+  hello: Scalars["String"];
 };
 
 
@@ -94,42 +94,42 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
-  String: ResolverTypeWrapper<Scalars['String']>;
+  String: ResolverTypeWrapper<Scalars["String"]>;
   Query: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
-  String: Scalars['String'];
+  String: Scalars["String"];
   Query: {};
-  Boolean: Scalars['Boolean'];
+  Boolean: Scalars["Boolean"];
 };
 
 export type UnionDirectiveArgs = {
-  discriminatorField?: Maybe<Scalars['String']>;
+  discriminatorField?: Maybe<Scalars["String"]>;
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
 export type UnionDirectiveResolver<Result, Parent, ContextType = any, Args = UnionDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type AbstractEntityDirectiveArgs = {
-  discriminatorField: Scalars['String'];
+  discriminatorField: Scalars["String"];
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
 export type AbstractEntityDirectiveResolver<Result, Parent, ContextType = any, Args = AbstractEntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type EntityDirectiveArgs = {
-  embedded?: Maybe<Scalars['Boolean']>;
+  embedded?: Maybe<Scalars["Boolean"]>;
   additionalFields?: Maybe<Array<Maybe<AdditionalEntityFields>>>;
 };
 
 export type EntityDirectiveResolver<Result, Parent, ContextType = any, Args = EntityDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type ColumnDirectiveArgs = {
-  overrideType?: Maybe<Scalars['String']>;
+  overrideType?: Maybe<Scalars["String"]>;
 };
 
 export type ColumnDirectiveResolver<Result, Parent, ContextType = any, Args = ColumnDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
@@ -139,7 +139,7 @@ export type IdDirectiveArgs = { };
 export type IdDirectiveResolver<Result, Parent, ContextType = any, Args = IdDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type LinkDirectiveArgs = {
-  overrideType?: Maybe<Scalars['String']>;
+  overrideType?: Maybe<Scalars["String"]>;
 };
 
 export type LinkDirectiveResolver<Result, Parent, ContextType = any, Args = LinkDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
@@ -149,13 +149,13 @@ export type EmbeddedDirectiveArgs = { };
 export type EmbeddedDirectiveResolver<Result, Parent, ContextType = any, Args = EmbeddedDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type MapDirectiveArgs = {
-  path: Scalars['String'];
+  path: Scalars["String"];
 };
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]> = {
+  hello?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
@@ -173,4 +173,4 @@ export type DirectiveResolvers<ContextType = any> = {
   map?: MapDirectiveResolver<any, any, ContextType>;
 };
 
-import { ObjectId } from 'mongodb';
+import { ObjectId } from "mongodb";

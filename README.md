@@ -12,19 +12,21 @@ This repo concerns itself with task number 8:
 
 - Node (developed on version 18.1.0)
 - Package manager (npm or yarn)
+- git
 - Docker (optional)
 
 ## What I didn't do, but would have if I had more time:
 
 - Fix Dockerfile
   - Describe process on how to run Dockerfile locally
-- Github stuff
+- Git(hub) stuff
   - Lock master (main) branch
   - Set up github actions (for pullrequest to master, run tests or something)
 - Code quality tools
   - husky
   - lint-stage
   - commitizen
+- Maybe some tests...
 
 ## Local development
 
