@@ -8,6 +8,8 @@ import {
     ApolloServerPluginLandingPageDisabled,
 } from "apollo-server-core";
 
+import { ProductService } from "../services";
+
 const schema = loadSchemaSync(join(__dirname, "../../schema/root.graphql"), {
     loaders: [new GraphQLFileLoader()],
 });
@@ -15,6 +17,7 @@ const schema = loadSchemaSync(join(__dirname, "../../schema/root.graphql"), {
 const Resolvers = {
     Query: {
         hello: () => "Hello",
+        getAllProducts: ProductService.getAllProducts,
     },
 };
 
