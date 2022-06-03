@@ -4,6 +4,9 @@ node_modules
 # Build Folder
 dist
 
+# Api Folder for Vercel for some reason
+api
+
 # Vercel
 .vercel
 
