@@ -1,25 +1,15 @@
 type Query {
-    getExamples: [Example]!
     getAllProducts: [Product]!
 }
 
 type Mutation {
-    createExample(input: CreateExampleInput!): Example!
     createProduct(input: CreateProductInput!): Product!
     deleteAllProducts: Boolean!
 }
 
-type Example {
-    name: String!
-}
-
-input CreateExampleInput {
-    name: String!
-}
-
 input CreateProductInput {
     name: String!
-    price: Int!
+    price: Float!
     currency: Currency!
     featured: Boolean!
     category: String!
@@ -40,19 +30,20 @@ input ImageInput {
 
 type Product {
     name: String!
-    price: Int!
+    price: Float!
     currency: Currency!
     featured: Boolean!
     category: String!
     image: Image!
     details: Details
+    bestseller: Boolean
 }
 
 type Details {
-    weight: Int!
-    thickness: Int!
-    description: String!
-    recommendations: [Image!]!
+    weight: Int
+    thickness: Int
+    description: String
+    recommendations: [Image]
 }
 
 type Image {

@@ -1,7 +1,11 @@
-import { ProductModel, Product, Category, Currency } from "../database";
+import { ProductModel, Product } from "../database";
 import { QueryResolvers, MutationResolvers } from "../generated/graphql";
 
-export const ProductServiceQueries: QueryResolvers = {};
+export const ProductServiceQueries: QueryResolvers = {
+    getAllProducts: async (): Promise<Product[]> => {
+        return await ProductModel.find();
+    },
+};
 
 export const ProductServiceMutations: MutationResolvers = {
     deleteAllProducts: async (): Promise<boolean> => {
@@ -10,21 +14,7 @@ export const ProductServiceMutations: MutationResolvers = {
         return true;
     },
 
-    createProduct: async () => {
-        const x: Product = {
-            name: "cunt",
-            category: Category.Glass,
-            price: 666,
-            image: {
-                src: "",
-                alt: "",
-            },
-            currency: Currency.Eur,
-            details: undefined,
-            featured: false,
-            bestseller: false,
-        };
-
-        return x;
+    createProduct: async (_, { input }): Promise<Product> => {
+        return await ProductModel.create(input);
     },
 };
