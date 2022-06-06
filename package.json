@@ -14,7 +14,9 @@
         "format": "prettier --write \"src/**/*.+(js|ts|json)\"",
         "generate": "graphql-codegen --config codegen.yml",
         "prepare": "husky install",
-        "postinstall": "npm run build"
+        "postinstall": "npm run build",
+        "data:destroy": "ts-node-dev --inspect --project tsconfig.json --respawn --ignore-watch=node_modules ./cli/index.ts --destroy",
+        "data:populate": "ts-node-dev --inspect --project tsconfig.json --respawn --ignore-watch=node_modules ./cli/index.ts --populate"
     },
     "repository": {
         "type": "git",
