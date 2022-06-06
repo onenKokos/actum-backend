@@ -9,23 +9,16 @@ import {
     // ApolloServerPluginLandingPageDisabled,
 } from "apollo-server-core";
 
-import {
-    ExampleServiceQueries,
-    ExmapleServiceMutations,
-    // ProductServiceQueries,
-    ProductServiceMutations,
-} from "../services";
+import { ProductServiceQueries, ProductServiceMutations } from "../services";
 const schema = loadSchemaSync(join(__dirname, "../../schema/root.graphql"), {
     loaders: [new GraphQLFileLoader()],
 });
 
 const Resolvers = {
     Query: {
-        // getAllProducts: ProductServiceQueries.getAllProducts,
-        getExamples: ExampleServiceQueries.getExamples,
+        ...ProductServiceQueries,
     },
     Mutation: {
-        createExample: ExmapleServiceMutations.createExample,
         ...ProductServiceMutations,
     },
 };
