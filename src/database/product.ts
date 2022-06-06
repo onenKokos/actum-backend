@@ -4,15 +4,15 @@ import { Schema, model } from "mongoose";
 // https://mongoosejs.com/docs/typescript.html
 
 // 1. Create an interface representing a document in MongoDB
-enum Category {
-    GLASS = "glass",
-    STEEL = "steel",
-    PLASTIC = "plastic",
+export enum Category {
+    Glass = "GLASS",
+    Plastic = "PLASTIC",
+    Steel = "STEEL",
 }
 
-enum Currency {
-    USD = "USD",
-    EUR = "EUR",
+export enum Currency {
+    Usd = "USD",
+    Eur = "EUR",
 }
 
 type Image = {
@@ -21,10 +21,10 @@ type Image = {
 };
 
 type Details = {
-    weight?: number;
-    thickness?: number;
-    description?: string;
-    recommendations?: Image[];
+    weight: number;
+    thickness: number;
+    description: string;
+    recommendations: Image[];
 };
 
 export type Product = {
@@ -35,7 +35,7 @@ export type Product = {
     image: Image;
     bestseller: boolean;
     featured: boolean;
-    details: Details | null;
+    details?: Details;
 };
 
 // 2. Create a Schema corresponding to the document interface
@@ -43,12 +43,12 @@ const ProductSchema = new Schema<Product>({
     name: String,
     category: {
         type: String,
-        enum: [Category.GLASS, Category.PLASTIC, Category.STEEL],
+        enum: [Category.Glass, Category.Plastic, Category.Steel],
     },
     price: Number,
     currency: {
         type: String,
-        enum: [Currency.EUR, Currency.USD],
+        enum: [Currency.Eur, Currency.Usd],
     },
     image: {
         src: String,

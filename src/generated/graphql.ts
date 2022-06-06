@@ -20,8 +20,43 @@ export type AdditionalEntityFields = {
   type?: InputMaybe<Scalars['String']>;
 };
 
+export enum Category {
+  Glass = 'GLASS',
+  Plastic = 'PLASTIC',
+  Steel = 'STEEL'
+}
+
 export type CreateExampleInput = {
   name: Scalars['String'];
+};
+
+export type CreateProductInput = {
+  category: Scalars['String'];
+  currency: Currency;
+  details?: InputMaybe<Array<DetailsInput>>;
+  featured: Scalars['Boolean'];
+  image: ImageInput;
+  name: Scalars['String'];
+  price: Scalars['Int'];
+};
+
+export enum Currency {
+  Eur = 'EUR',
+  Usd = 'USD'
+}
+
+export type Details = {
+  __typename?: 'Details';
+  description: Scalars['String'];
+  recommendations: Array<Image>;
+  thickness: Scalars['Int'];
+  weight: Scalars['Int'];
+};
+
+export type DetailsInput = {
+  descriptions: Scalars['Int'];
+  thickness: Scalars['Int'];
+  weight: Scalars['Int'];
 };
 
 export type Example = {
@@ -29,9 +64,22 @@ export type Example = {
   name: Scalars['String'];
 };
 
+export type Image = {
+  __typename?: 'Image';
+  alt: Scalars['String'];
+  src: Scalars['String'];
+};
+
+export type ImageInput = {
+  alt: Scalars['String'];
+  src: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createExample: Example;
+  createProduct: Product;
+  deleteAllProducts: Scalars['Boolean'];
 };
 
 
@@ -39,8 +87,25 @@ export type MutationCreateExampleArgs = {
   input: CreateExampleInput;
 };
 
+
+export type MutationCreateProductArgs = {
+  input: CreateProductInput;
+};
+
+export type Product = {
+  __typename?: 'Product';
+  category: Scalars['String'];
+  currency: Currency;
+  details?: Maybe<Details>;
+  featured: Scalars['Boolean'];
+  image: Image;
+  name: Scalars['String'];
+  price: Scalars['Int'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  getAllProducts: Array<Maybe<Product>>;
   getExamples: Array<Maybe<Example>>;
 };
 
@@ -115,11 +180,20 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Category: Category;
   CreateExampleInput: CreateExampleInput;
-  Example: ResolverTypeWrapper<Example>;
-  Mutation: ResolverTypeWrapper<{}>;
-  Query: ResolverTypeWrapper<{}>;
+  CreateProductInput: CreateProductInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Currency: Currency;
+  Details: ResolverTypeWrapper<Details>;
+  DetailsInput: DetailsInput;
+  Example: ResolverTypeWrapper<Example>;
+  Image: ResolverTypeWrapper<Image>;
+  ImageInput: ImageInput;
+  Mutation: ResolverTypeWrapper<{}>;
+  Product: ResolverTypeWrapper<Product>;
+  Query: ResolverTypeWrapper<{}>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -127,10 +201,17 @@ export type ResolversParentTypes = {
   AdditionalEntityFields: AdditionalEntityFields;
   String: Scalars['String'];
   CreateExampleInput: CreateExampleInput;
-  Example: Example;
-  Mutation: {};
-  Query: {};
+  CreateProductInput: CreateProductInput;
   Boolean: Scalars['Boolean'];
+  Int: Scalars['Int'];
+  Details: Details;
+  DetailsInput: DetailsInput;
+  Example: Example;
+  Image: Image;
+  ImageInput: ImageInput;
+  Mutation: {};
+  Product: Product;
+  Query: {};
 };
 
 export type UnionDirectiveArgs = {
@@ -180,22 +261,53 @@ export type MapDirectiveArgs = {
 
 export type MapDirectiveResolver<Result, Parent, ContextType = any, Args = MapDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type DetailsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Details'] = ResolversParentTypes['Details']> = {
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  recommendations?: Resolver<Array<ResolversTypes['Image']>, ParentType, ContextType>;
+  thickness?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  weight?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type ExampleResolvers<ContextType = any, ParentType extends ResolversParentTypes['Example'] = ResolversParentTypes['Example']> = {
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type ImageResolvers<ContextType = any, ParentType extends ResolversParentTypes['Image'] = ResolversParentTypes['Image']> = {
+  alt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  src?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createExample?: Resolver<ResolversTypes['Example'], ParentType, ContextType, RequireFields<MutationCreateExampleArgs, 'input'>>;
+  createProduct?: Resolver<ResolversTypes['Product'], ParentType, ContextType, RequireFields<MutationCreateProductArgs, 'input'>>;
+  deleteAllProducts?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+};
+
+export type ProductResolvers<ContextType = any, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = {
+  category?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  currency?: Resolver<ResolversTypes['Currency'], ParentType, ContextType>;
+  details?: Resolver<Maybe<ResolversTypes['Details']>, ParentType, ContextType>;
+  featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  image?: Resolver<ResolversTypes['Image'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  price?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getAllProducts?: Resolver<Array<Maybe<ResolversTypes['Product']>>, ParentType, ContextType>;
   getExamples?: Resolver<Array<Maybe<ResolversTypes['Example']>>, ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
+  Details?: DetailsResolvers<ContextType>;
   Example?: ExampleResolvers<ContextType>;
+  Image?: ImageResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  Product?: ProductResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 };
 

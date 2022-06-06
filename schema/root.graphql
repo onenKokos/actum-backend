@@ -1,9 +1,12 @@
 type Query {
     getExamples: [Example]!
+    getAllProducts: [Product]!
 }
 
 type Mutation {
     createExample(input: CreateExampleInput!): Example!
+    createProduct(input: CreateProductInput!): Product!
+    deleteAllProducts: Boolean!
 }
 
 type Example {
@@ -14,67 +17,56 @@ input CreateExampleInput {
     name: String!
 }
 
-# type Query {
-#     hello: String!
-#     getAllProducts: [Product]!
-# }
+input CreateProductInput {
+    name: String!
+    price: Int!
+    currency: Currency!
+    featured: Boolean!
+    category: String!
+    image: ImageInput!
+    details: [DetailsInput!]
+}
 
-# type Mutation {
-#     createProduct(input: CreateProductInput!): Product!
-#     deleteAllInvoices: Boolean!
-# }
+input DetailsInput {
+    weight: Int!
+    thickness: Int!
+    descriptions: Int!
+}
 
-# enum Category {
-#     glass
-#     steel
-#     plastic
-# }
+input ImageInput {
+    src: String!
+    alt: String!
+}
 
-# enum Currency {
-#     USD
-#     EUR
-# }
+type Product {
+    name: String!
+    price: Int!
+    currency: Currency!
+    featured: Boolean!
+    category: String!
+    image: Image!
+    details: Details
+}
 
-# type Image {
-#     src: String!
-#     alt: String!
-# }
+type Details {
+    weight: Int!
+    thickness: Int!
+    description: String!
+    recommendations: [Image!]!
+}
 
-# type Details {
-#     weight: Int
-#     thickness: Int
-#     descriptions: String
-#     recommendations: [Image]
-# }
+type Image {
+    src: String!
+    alt: String!
+}
 
-# type Product {
-#     name: String!
-#     category: Category!
-#     price: Int!
-#     currency: Currency!
-#     image: Image!
-#     featured: Boolean!
-#     details: Details
-# }
+enum Category {
+    GLASS
+    STEEL
+    PLASTIC
+}
 
-# input ImageInput {
-#     alt: String
-#     src: String
-# }
-
-# input DetailsInput {
-#     weight: Int
-#     thickness: Int
-#     descriptions: String
-#     recommendations: [ImageInput]
-# }
-
-# input CreateProductInput {
-#     name: String!
-#     category: String!
-#     price: Int!
-#     currency: Currency!
-#     image: ImageInput!
-#     featured: Boolean!
-#     details: DetailsInput
-# }
+enum Currency {
+    USD
+    EUR
+}
