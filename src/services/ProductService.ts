@@ -15,6 +15,10 @@ export const ProductServiceMutations: MutationResolvers = {
     },
 
     createProduct: async (_, { input }): Promise<Product> => {
+        if (process.env.NODE_ENV === "production") {
+            throw new Error("Please don't.");
+        }
+
         return await ProductModel.create(input);
     },
 };

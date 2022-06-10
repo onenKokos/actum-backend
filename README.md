@@ -13,7 +13,6 @@ This repo concerns itself with task number 8:
 - Node (developed on version 16.x)
 - Package manager (npm or yarn)
 - Git
-- Docker (optional)
 
 ## What I didn't do, but would have if I had more time:
 
@@ -49,4 +48,3 @@ The Production build can be obtained by running `yarn build` or `npm run build` 
 **IMPORTANT!**
 
 Running the built app via the `start` might not work on Windows machines, because of the way the `NODE_ENV` parameter is passed to node. There are numerous ways to fix this, but the easiest way is to modify the `start` to be `cross-env NODE_ENV=production node dist/index.js` (you should also move `cross-env` from devDependencies to dependencies, if you want to be pedantic about it). There are probably some easier ways, but I don't have a Windows machine to test it.
-Alternatively, I have provided a Dockerfile - you can build it by
